@@ -55,10 +55,6 @@ const Cloud = () => {
     return (
         <>
             {clouds.map((cloud) => (
-            //    const wordSize = 1,
-            //     if(cloud.with < 120){
-            //         wordSize = null;
-            // }
                 <div
                     key={cloud.id}
                     className="absolute border-2 border-red-500"
