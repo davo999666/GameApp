@@ -52,7 +52,7 @@ const Cloud = () => {
 
 
 
-    return (//hello
+    return (
         <>
             {clouds.map((cloud) => (
                 <div
