@@ -34,29 +34,7 @@ const cloudSlice = createSlice({
             const idToRemove = action.payload;
             state.clouds = state.clouds.filter(cloud => cloud.id !== idToRemove);
         },
-        changeSize: (state, action) => {
-            const { width, height } = action.payload;
 
-            console.log("Payload:", width, height);
-
-            state.clouds = state.clouds.map((cloud, i) => {
-                if (!cloud) return cloud;
-
-                console.log(`Before [${i}]:`, cloud);
-
-                const updated = {
-                    ...cloud,
-                    width,
-                    height,
-                };
-
-                console.log(`After [${i}]:`, updated);
-
-                return updated;
-            });
-
-            console.log("Final clouds:", state.clouds);
-        },
 
         collision: (state, action) => {
             const target = action.payload;
@@ -91,5 +69,5 @@ const cloudSlice = createSlice({
     }
 })
 
-export const {addCloud, moveCloud,moveLeft,moveRight,removeCloud, collision,changeSize} = cloudSlice.actions;
+export const {addCloud, moveCloud,moveLeft,moveRight,removeCloud, collision} = cloudSlice.actions;
 export default cloudSlice.reducer;

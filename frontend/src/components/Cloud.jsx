@@ -1,7 +1,7 @@
 import {useContext, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createCloud} from "../utils/function.js";
-import {addCloud, moveCloud, moveLeft, moveRight, removeCloud, collision, changeSize
+import {addCloud, moveCloud, moveLeft, moveRight, removeCloud, collision
 } from "../features/cloud/cloudSlice.js";
 import {getLevelWord} from "../utils/which_level.js";
 import {addRussianSent, addWord} from "../features/word/wordSlice.js";
@@ -14,26 +14,15 @@ const Cloud = () => {
     const clouds = useSelector((state) => state.clouds.clouds);
     const currentSent = useSelector(state => state.word.currentSent);
     const gameRef = useContext(GameRefContext);
+
     useEffect(() => {
         currentSent.forEach((word) => {
             const x = Math.random() * gameRef.current.offsetWidth;
             const cloudInstance = createCloud(Math.floor(x), 0, word);
             dispatch(addCloud(cloudInstance.toObject()));
         });
-    }, [currentSent])
-    useEffect(() => {
-        const handleResize = () => {
-            console.log("resize");
-            clouds.forEach((cloud) => {
-                const width = cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280;
-                const height = cloud.height * (gameRef.current?.offsetHeight || 720) / 720;
-                dispatch(changeSize({ width, height }));
-            });
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [dispatch]);
+    }, [currentSent]);
+
     useEffect(() => {
         if (clouds.length === 0) {
             const sentencePair = getLevelWord(level);
@@ -70,14 +59,13 @@ const Cloud = () => {
             {clouds.map((cloud) => (
                 <div
                     key={cloud.id}
-                    className="absolute border-2 border-red-500"
+                    className="absolute"
 
                     style={{
                         left: cloud.x,
                         top: cloud.y,
-                        width: cloud.width,
-                        height: cloud.height,
-                        paddingBottom: cloud.width < 81 ? null : 1,
+                        width: cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280,
+                        height: cloud.height * (gameRef.current?.offsetHeight || 720) / 720,
                     }}
                 >
                     <img className="absolute w-full h-full block"
@@ -89,15 +77,15 @@ const Cloud = () => {
                             display: "block",
                         }}
                     />
-                    <span className={"border-2 border-red-500"}
+                    <span
                         style={{
                             position: "absolute",
-                            bottom: cloud.width < 81 ? null : 1,
+                            bottom: 1,
                             left: "50%",
                             transform: "translateX(-50%)",
                             color: "black",
                             fontWeight: "bold",
-                            fontSize: `${cloud.width / 100 * 22}px`,
+                            fontSize: `${((cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280) / 100) * 1.5}em`,
                             pointerEvents: "none",
                         }}
                     >

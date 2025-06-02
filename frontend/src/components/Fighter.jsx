@@ -3,7 +3,6 @@ import fighterImage from '../assets/images/fighter/fig.webp';
 import {addBullet} from '../features/bullet/bulletSlice.js';
 import { useDispatch } from 'react-redux';
 import {GameRefContext} from "../utils/gameScreenContext.js";
-import { Bullet } from "../classes/bulletClass.js";
 import {handleClick, handleMouseMove} from "../handlers/gameHandlers.js";
 
 const Fighter = () => {
@@ -33,7 +32,7 @@ const Fighter = () => {
 
     return (
         <div
-            className="absolute bottom-[1px] border border-red-500 "
+            className="absolute bottom-[1px]"
             style={{ left: `${positionX}px`, transform: 'translateX(-50%)' }}
         >
             <img
