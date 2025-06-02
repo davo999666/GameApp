@@ -11,7 +11,6 @@ const bulletSlice = createSlice({
     initialState,
     reducers: {
         addBullet: (state, action) => {
-            console.log(action.payload);
             const { x, y , speed} = action.payload;
             state.bullets.push({ id: bulletId++, x, y, speed});
         },

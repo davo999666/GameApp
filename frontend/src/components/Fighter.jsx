@@ -20,7 +20,7 @@ const Fighter = () => {
         const mouseMoveHandler = (event) =>{
             handleMouseMove(event, gameRef, imgRef, marginPercent, setPositionX);}
         const clickHandler = (event) =>{
-            handleClick(event, positionX, gameRef, imgRef, dispatch, Bullet, addBullet);}
+            handleClick(event, positionX, gameRef, imgRef, dispatch, addBullet);}
 
         element.addEventListener('mousemove', mouseMoveHandler);
         element.addEventListener('click', clickHandler);

@@ -15,9 +15,9 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     setPositionX(clampedX);
 };
 
-export const handleClick = (event, positionX, gameRef, imgRef, dispatch, Bullet, addBullet) => {
+export const handleClick = (event, positionX, gameRef, imgRef, dispatch, addBullet) => {
     event.preventDefault();
     const bulletX = positionX;
     const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
-    dispatch(addBullet(new Bullet(bulletX, bulletY)));
+    dispatch(addBullet({x:bulletX, y:bulletY, speed :10}));
 };

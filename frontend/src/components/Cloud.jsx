@@ -23,6 +23,7 @@ const Cloud = () => {
     }, [currentSent])
     useEffect(() => {
         const handleResize = () => {
+            console.log("resize");
             clouds.forEach((cloud) => {
                 const width = cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280;
                 const height = cloud.height * (gameRef.current?.offsetHeight || 720) / 720;
