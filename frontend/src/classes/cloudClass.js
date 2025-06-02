@@ -47,29 +47,29 @@ export class MediumCloud extends CloudBase {
 }
 export class AverageCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('average'), 120, 45);
+        super(x, y, word, cloudImages('average'), 130, 45);
     }
 }
 
 export class LargeCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('large'), 140, 50);
+        super(x, y, word, cloudImages('large'), 150, 50);
     }
 }
 
 export class BigCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('big'), 160, 55);
+        super(x, y, word, cloudImages('big'), 175, 55);
     }
 }
 
 export class HugeCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('huge'), 180, 60);
+        super(x, y, word, cloudImages('huge'), 200, 60);
     }
 }
 export class GiganticCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('gigantic'), 200, 65);
+        super(x, y, word, cloudImages('gigantic'), 220, 65);
     }
 }

@@ -23,7 +23,12 @@ const Cloud = () => {
             const x = Math.random() * gameRef.current.offsetWidth;
             const cloudInstance = createCloud(Math.floor(x), 0, word);
             dispatch(addCloud(cloudInstance.toObject()));
+
+
         });
+        const gameWidth = gameRef.current.offsetWidth;
+        const gameHeight = gameRef.current.offsetHeight;
+        dispatch(addSize({ gameWidth, gameHeight }));
     }, [currentSent]);
     useEffect(() => {
         if (clouds.length === 0) {
@@ -45,7 +50,6 @@ const Cloud = () => {
                     console.log(clouds);
                     dispatch(addSize({ gameWidth, gameHeight }));
                 }
-                // dispatch(addSize({gameWidth, gameHeight}))
                 clouds.forEach((cloud2) => {
                     if (cloud !== cloud2 && rectCollision(cloud, cloud2)) {
                         dispatch(collision(cloud))
@@ -78,8 +82,6 @@ const Cloud = () => {
                     style={{
                         left: cloud.x,
                         top: cloud.y,
-                        // width: cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280,
-                        // height: cloud.height * (gameRef.current?.offsetHeight || 720) / 720,
                         width: cloud.width,
                         height: cloud.height,
                         pointerEvents: "none"
@@ -97,12 +99,13 @@ const Cloud = () => {
                     <span
                         style={{
                             position: "absolute",
-                            bottom: 1,
+                            bottom: '1px',
                             left: "50%",
                             transform: "translateX(-50%)",
                             color: "black",
                             fontWeight: "bold",
-                            fontSize: `${((cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280) / 100) * 1.5}em`,
+                            // fontSize: `${(cloud.width / 100) * 1.3}em`,
+                            fontSize: `${(gameRef.current.offsetWidth / 100) * 2}px`,
                             pointerEvents: "none",
                         }}
                     >
