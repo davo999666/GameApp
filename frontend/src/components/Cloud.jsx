@@ -1,7 +1,9 @@
 import {useContext, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createCloud} from "../utils/function.js";
-import {addCloud, moveCloud, moveLeft, moveRight, removeCloud, collision
+import {createChangeChecker, createCloud, rectCollision} from "../utils/function.js";
+import {
+    addCloud, moveCloud, moveLeft, moveRight, removeCloud
+    ,collision,addSize
 } from "../features/cloud/cloudSlice.js";
 import {getLevelWord} from "../utils/which_level.js";
 import {addRussianSent, addWord} from "../features/word/wordSlice.js";
@@ -14,6 +16,7 @@ const Cloud = () => {
     const clouds = useSelector((state) => state.clouds.clouds);
     const currentSent = useSelector(state => state.word.currentSent);
     const gameRef = useContext(GameRefContext);
+    const checkChangeRef = useRef(createChangeChecker());
 
     useEffect(() => {
         currentSent.forEach((word) => {
@@ -22,7 +25,6 @@ const Cloud = () => {
             dispatch(addCloud(cloudInstance.toObject()));
         });
     }, [currentSent]);
-
     useEffect(() => {
         if (clouds.length === 0) {
             const sentencePair = getLevelWord(level);
@@ -33,11 +35,23 @@ const Cloud = () => {
         }
         const animation = () => {
             dispatch(moveCloud());
+
+
             clouds.forEach((cloud) => {
                 const gameWidth = gameRef.current.offsetWidth;
                 const gameHeight = gameRef.current.offsetHeight;
-                dispatch(collision(cloud))
-                if (cloud.x + cloud.width+5 >= gameWidth) {
+                const hasChanged = checkChangeRef.current(gameWidth + 'x' + gameHeight);
+                if (hasChanged) {
+                    console.log(clouds);
+                    dispatch(addSize({ gameWidth, gameHeight }));
+                }
+                // dispatch(addSize({gameWidth, gameHeight}))
+                clouds.forEach((cloud2) => {
+                    if (cloud !== cloud2 && rectCollision(cloud, cloud2)) {
+                        dispatch(collision(cloud))
+                    }
+                });
+                if (cloud.x + (cloud.width) >= gameWidth) {
                     dispatch(moveLeft(cloud.id));
                 } else if (cloud.x <= -5) {
                     dispatch(moveRight(cloud.id));
@@ -59,13 +73,16 @@ const Cloud = () => {
             {clouds.map((cloud) => (
                 <div
                     key={cloud.id}
-                    className="absolute"
+                    className="absolute pointerEvents: none"
 
                     style={{
                         left: cloud.x,
                         top: cloud.y,
-                        width: cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280,
-                        height: cloud.height * (gameRef.current?.offsetHeight || 720) / 720,
+                        // width: cloud.width * (gameRef.current?.offsetWidth || 1280) / 1280,
+                        // height: cloud.height * (gameRef.current?.offsetHeight || 720) / 720,
+                        width: cloud.width,
+                        height: cloud.height,
+                        pointerEvents: "none"
                     }}
                 >
                     <img className="absolute w-full h-full block"

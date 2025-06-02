@@ -14,29 +14,47 @@ import cloudImage43 from "../assets/images/cloud/clouds43.png";
 import cloudImage51 from "../assets/images/cloud/clouds51.png";
 import cloudImage52 from "../assets/images/cloud/clouds52.png";
 import cloudImage53 from "../assets/images/cloud/clouds53.png";
-const small = [cloudImage11, cloudImage12, cloudImage13]
-const medium = [cloudImage21, cloudImage22, cloudImage23]
-const large = [cloudImage31, cloudImage32, cloudImage33, cloudImage34]
-const big = [cloudImage41,cloudImage42,cloudImage43,]
-const huge = [cloudImage51, cloudImage52, cloudImage53]
-
-
+const tiny = [cloudImage11, cloudImage12];
+const small = [cloudImage13, cloudImage21];
+const medium = [cloudImage22, cloudImage23];
+const average = [cloudImage31, cloudImage32];
+const large = [cloudImage33, cloudImage34];
+const big = [cloudImage41, cloudImage42];
+const huge = [cloudImage43, cloudImage51];
+const gigantic = [cloudImage52, cloudImage53];
 
 export const cloudImages = (type) => {
-    if (type === 'small') {
-        const index = Math.floor(Math.random() * small.length);
-        return small[index];
-    } else if (type === 'medium') {
-        const index = Math.floor(Math.random() * medium.length);
-        return medium[index];
-    } else if (type === 'large') {
-        const index = Math.floor(Math.random() * large.length);
-        return large[index];
-    } else if (type === 'big') {
-        const index = Math.floor(Math.random() * big.length);
-        return big[index];
-    } else if (type === 'huge') {
-        const index = Math.floor(Math.random() * huge.length);
-        return huge[index];
+    let arr;
+
+    switch (type) {
+        case 'tiny':
+            arr = tiny;
+            break;
+        case 'small':
+            arr = small;
+            break;
+        case 'medium':
+            arr = medium;
+            break;
+        case 'average':
+            arr = average;
+            break;
+        case 'large':
+            arr = large;
+            break;
+        case 'big':
+            arr = big;
+            break;
+        case 'huge':
+            arr = huge;
+            break;
+        case 'gigantic':
+            arr = gigantic;
+            break;
+        default:
+            arr = [];
     }
+    if (arr.length === 0) return null;
+    const index = Math.floor(Math.random() * arr.length);
+    return arr[index];
 };

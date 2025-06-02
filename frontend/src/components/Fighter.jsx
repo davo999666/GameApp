@@ -33,7 +33,7 @@ const Fighter = () => {
     return (
         <div
             className="absolute bottom-[1px]"
-            style={{ left: `${positionX}px`, transform: 'translateX(-50%)' }}
+            style={{ left: `${positionX}px`, transform: 'translateX(-50%)',pointerEvents: "none" }}
         >
             <img
                 ref={imgRef}

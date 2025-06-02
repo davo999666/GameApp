@@ -34,8 +34,26 @@ const cloudSlice = createSlice({
             const idToRemove = action.payload;
             state.clouds = state.clouds.filter(cloud => cloud.id !== idToRemove);
         },
+        addSize: (state, action) => {
+            const { gameWidth, gameHeight } = action.payload;
 
+            // Guard against invalid sizes
+            if (!gameWidth || !gameHeight) return;
 
+            state.clouds = state.clouds.map((cloud) => {
+                // Use baseWidth and baseHeight that you should save when initializing clouds
+                const baseWidth = cloud.baseWidth || cloud.width;
+                const baseHeight = cloud.baseHeight || cloud.height;
+
+                return {
+                    ...cloud,
+                    baseWidth,
+                    baseHeight,
+                    width: baseWidth * gameWidth / 1280,
+                    height: baseHeight * gameHeight / 720,
+                };
+            });
+        },
         collision: (state, action) => {
             const target = action.payload;
 
@@ -69,5 +87,5 @@ const cloudSlice = createSlice({
     }
 })
 
-export const {addCloud, moveCloud,moveLeft,moveRight,removeCloud, collision} = cloudSlice.actions;
+export const {addCloud,addSize, moveCloud,moveLeft,moveRight,removeCloud, collision} = cloudSlice.actions;
 export default cloudSlice.reducer;

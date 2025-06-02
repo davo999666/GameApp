@@ -34,11 +34,12 @@ const Game = () => {
             <GameRefContext.Provider value={backgroundRef}>
                 <div
                     ref={backgroundRef}
-                    className="h-full w-full md:w-[600px] lg:w-[800px] xl:w-[1000px] relative"
+                    className="h-full w-full md:w-[600px] lg:w-[800px] xl:w-[1000px] relative select-none"
                     style={{
                         backgroundImage: `url(${starBackground})`,
                         backgroundRepeat: 'repeat',
                         backgroundSize: 'cover',
+                        userSelect: 'none',
                     }}
                 >
                     <Cloud/>

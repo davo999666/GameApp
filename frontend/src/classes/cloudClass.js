@@ -5,8 +5,8 @@ class CloudBase {
         this.y = y;
         this.word = word;
         this.image = image;
-        this.width = width;
-        this.height = height;
+        this.width = +width;
+        this.height = +height;
         this.centerX = this.x + this.width / 2;
         this.centerY = this.y + this.height / 2;
         this.speed = 0.2
@@ -30,7 +30,7 @@ class CloudBase {
 
 export class TinyCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('small'), 70, 30);
+        super(x, y, word, cloudImages('tiny'), 70, 30);
     }
 }
 
@@ -47,7 +47,7 @@ export class MediumCloud extends CloudBase {
 }
 export class AverageCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('medium'), 120, 45);
+        super(x, y, word, cloudImages('average'), 120, 45);
     }
 }
 
@@ -59,17 +59,17 @@ export class LargeCloud extends CloudBase {
 
 export class BigCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('large'), 160, 55);
+        super(x, y, word, cloudImages('big'), 160, 55);
     }
 }
 
 export class HugeCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('big'), 180, 60);
+        super(x, y, word, cloudImages('huge'), 180, 60);
     }
 }
 export class GiganticCloud extends CloudBase {
     constructor(x, y, word) {
-        super(x, y, word, cloudImages('huge'), 200, 65);
+        super(x, y, word, cloudImages('gigantic'), 200, 65);
     }
 }
