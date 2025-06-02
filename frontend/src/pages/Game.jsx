@@ -30,7 +30,7 @@ const Game = () => {
     }, []);
 
     return (
-        <div className="h-screen w-screen flex justify-center items-center bg-gray-900 overflow-hidden">
+        <div className="h-screen w-screen flex justify-center items-center bg-gray-900 overflow-hidden select-none">
             <GameRefContext.Provider value={backgroundRef}>
                 <div
                     ref={backgroundRef}
