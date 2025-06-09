@@ -1,4 +1,4 @@
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import starBackground from '../assets/images/screen/star_background_1000x5000.png';
 import Fighter from "../components/Fighter.jsx";
 import Bullet from "../components/Bullet.jsx";
@@ -11,6 +11,8 @@ import Boom from "../components/Boom.jsx";
 const Game = () => {
     const backgroundRef = useRef(null);
     const heightRef = useRef(0);
+    const [bullets, setBullets] = useState([]);
+    const [clouds, setClouds] = useState([]);
 
     useEffect(() => {
 
@@ -22,7 +24,6 @@ const Game = () => {
             if (backgroundRef.current) {
                 backgroundRef.current.style.backgroundPosition = `0px ${heightRef.current}px`;
             }
-
             requestAnimationFrame(loop);
         };
 
@@ -42,11 +43,11 @@ const Game = () => {
                         userSelect: 'none',
                     }}
                 >
-                    <Cloud/>
+                    <Cloud clouds={clouds} setClouds={setClouds} />
                     <Boom/>
                     <Translate/>
-                    <Bullet/>
-                    <Fighter/>
+                    <Bullet bullets={bullets} clouds={clouds} setBullets={setBullets} setClouds={setClouds}/>
+                    <Fighter setBullets={setBullets} />
                     <button
                         onClick={() => handleFullScreen(backgroundRef)}
                         className="absolute bottom-[0.5px] right-[0.5px] text-blue-500 text-xl px-2 z-10 rounded-sm"

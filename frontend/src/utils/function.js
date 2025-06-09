@@ -28,12 +28,21 @@ export function rectCollision(rect1, rect2) {
         rect1.y + rect1.height > rect2.y
     );
 }
-export function createChangeChecker() {
-    let lastValue = null;
-
-    return function (newValue) {
-        const changed = newValue !== lastValue;
-        lastValue = newValue;
-        return changed;
-    };
+export function collisionBulClo(bullets, clouds) {
+    for (const cloud of clouds) {
+        for (const bullet of bullets) {
+            const isColliding =
+                bullet.x >= cloud.x &&
+                bullet.x <= cloud.x + cloud.width &&
+                bullet.y >= cloud.y &&
+                bullet.y <= cloud.y + cloud.height;
+            if (isColliding) {
+                return { bullet, cloud };
+            }
+        }
+    }
+    return null;
 }
+
+
+

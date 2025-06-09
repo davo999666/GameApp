@@ -1,4 +1,4 @@
-
+import {BulletClass} from "../classes/bulletClass.js";
 
 export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositionX) => {
     if (!gameRef.current || !imgRef.current) return;
@@ -15,9 +15,9 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     setPositionX(clampedX);
 };
 
-export const handleClick = (event, positionX, gameRef, imgRef, dispatch, addBullet) => {
+export const handleClick = (event, positionX, gameRef, imgRef) => {
     event.preventDefault();
     const bulletX = positionX;
     const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
-    dispatch(addBullet({x:bulletX, y:bulletY, speed :10}));
+    return new BulletClass (bulletX, bulletY);
 };
