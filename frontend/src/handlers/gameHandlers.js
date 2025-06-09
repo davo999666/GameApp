@@ -15,9 +15,7 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     setPositionX(clampedX);
 };
 
-export const handleClick = (event, positionX, gameRef, imgRef) => {
+export const handleClick = (event, positionX, bulletY) => {
     event.preventDefault();
-    const bulletX = positionX;
-    const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
-    return new BulletClass (bulletX, bulletY);
+    return new BulletClass (positionX, bulletY);
 };

@@ -20,9 +20,8 @@ const Fighter = ({setBullets}) => {
             handleMouseMove(event, gameRef, imgRef, marginPercent, setPositionX, dispatch);
         };
         const clickHandler = (event) => {
-            // const center = positionX - (fighterRef.current.offsetWidth/1.65)
-            // const positionY = gameRef.current.offsetHeight - imgRef.current.offsetHeight
-            const newBullet = handleClick(event, positionX, gameRef, imgRef);
+            const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
+            const newBullet = handleClick(event, positionX, bulletY);
             setBullets(p => [...p, newBullet]);
         };
 
