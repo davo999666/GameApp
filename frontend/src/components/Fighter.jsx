@@ -2,7 +2,6 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import fighterImage from '../assets/images/fighter/fig.webp';
 import {GameRefContext} from "../utils/gameScreenContext.js";
 import {handleClick, handleMouseMove} from "../handlers/gameHandlers.js";
-import Bullet from "./Bullet.jsx";
 
 const Fighter = ({setBullets}) => {
     const [positionX, setPositionX] = useState(0);
@@ -35,20 +34,18 @@ const Fighter = ({setBullets}) => {
 
     return (
         <div
-            className="absolute bottom-[1px] border border-red-500"
+            className="absolute bottom-[1px]"
             style={{
                 left: `${positionX}px`,
                 transform: 'translateX(-50%)',
                 pointerEvents: "none",
             }}
         >
-
             <img
-
                 ref={imgRef}
                 src={fighterImage}
                 alt="Fighter"
-                className="w-[8vw] min-w-[50px] max-w-[100px] h-auto"
+                className="w-[8vw] min-w-[80px] max-w-[90px] min-h-[60px] max-h-[70px]"
             />
         </div>
     );

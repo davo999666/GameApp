@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setLevel } from '../features/level/levelSlice';
 import { useState } from 'react';
-import Game from './Game'; // Make sure you import your Game component
+import Game from './Game';
+import Authentication from "./Authentication.jsx";
+import SignInForm from "./SignInForm.jsx"; // Make sure you import your Game component
 
 const levels = ['A1', 'A2', 'B1', 'B2'];
 
@@ -28,6 +30,7 @@ const Start = () => {
 
     return (
         <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
+            <SignInForm/>
             <div id="start-screen" className="md:w-[800px] lg:w-[900px] xl:w-[1000px] text-center space-y-4">
                 <div id="buttonLevel" className="space-x-2">
                     {levels.map((level) => (
