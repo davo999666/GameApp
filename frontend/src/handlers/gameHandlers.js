@@ -5,7 +5,7 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     const bounds = gameRef.current.getBoundingClientRect();
     const mouseX = event.clientX - bounds.left;
 
-    const fighterWidth = imgRef.current.offsetWidth;
+    const fighterWidth = imgRef.current.clientWidth;
     const margin = bounds.width * marginPercent;
 
     const clampedX = Math.max(
@@ -15,7 +15,7 @@ export const handleMouseMove = (event, gameRef, imgRef, marginPercent, setPositi
     setPositionX(clampedX);
 };
 
-export const handleClick = (event, positionX, bulletY) => {
+export const handleClick = (event, positionX, bulletY, gameWidth) => {
     event.preventDefault();
-    return new BulletClass (positionX, bulletY);
+    return new BulletClass (positionX, bulletY, gameWidth);
 };

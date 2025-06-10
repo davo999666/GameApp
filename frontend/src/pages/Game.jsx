@@ -46,8 +46,8 @@ const Game = () => {
                     <Cloud clouds={clouds} setClouds={setClouds} />
                     <Boom/>
                     <Translate/>
+                    <Fighter setBullets={setBullets}/>
                     <Bullet bullets={bullets} clouds={clouds} setBullets={setBullets} setClouds={setClouds}/>
-                    <Fighter setBullets={setBullets} />
                     <button
                         onClick={() => handleFullScreen(backgroundRef)}
                         className="absolute bottom-[0.5px] right-[0.5px] text-blue-500 text-xl px-2 z-10 rounded-sm"

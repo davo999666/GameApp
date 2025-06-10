@@ -54,8 +54,12 @@ const Bullet = ({ bullets, clouds, setBullets, setClouds}) => {
                     key={index}
                     src={bullet.image}
                     alt="Bullet"
-                    className="absolute w-[2%] h-auto"
-                    style={{ left: bullet.x, top: bullet.y }}
+                    className="absolute transform -translate-x-1/2"
+                    style={{
+                        left: bullet.x,
+                        top: bullet.y,
+                        width: bullet.width,
+                    }}
                 />
             ))}
         </>

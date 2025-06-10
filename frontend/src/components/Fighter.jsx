@@ -2,26 +2,25 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import fighterImage from '../assets/images/fighter/fig.webp';
 import {GameRefContext} from "../utils/gameScreenContext.js";
 import {handleClick, handleMouseMove} from "../handlers/gameHandlers.js";
-import {useDispatch} from "react-redux";
+import Bullet from "./Bullet.jsx";
 
 const Fighter = ({setBullets}) => {
     const [positionX, setPositionX] = useState(0);
     const imgRef = useRef(null);
     const marginPercent = -0.04;
     const gameRef = useContext(GameRefContext);
-    const fighterRef = useRef(null);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         const element = gameRef.current;
         if (!element) return;
 
         const mouseMoveHandler = (event) => {
-            handleMouseMove(event, gameRef, imgRef, marginPercent, setPositionX, dispatch);
+            handleMouseMove(event, gameRef, imgRef, marginPercent, setPositionX);
+            console.log(imgRef.current.clientWidth, imgRef.current.clientHeight);
         };
         const clickHandler = (event) => {
             const bulletY = gameRef.current.offsetHeight - imgRef.current.offsetHeight;
-            const newBullet = handleClick(event, positionX, bulletY);
+            const newBullet = handleClick(event, positionX, bulletY,gameRef.current.offsetWidth);
             setBullets(p => [...p, newBullet]);
         };
 
@@ -36,11 +35,16 @@ const Fighter = ({setBullets}) => {
 
     return (
         <div
-            ref={fighterRef}
-            className="absolute bottom-[1px]"
-            style={{ left: `${positionX}px`, transform: 'translateX(-50%)',pointerEvents: "none" }}
+            className="absolute bottom-[1px] border border-red-500"
+            style={{
+                left: `${positionX}px`,
+                transform: 'translateX(-50%)',
+                pointerEvents: "none",
+            }}
         >
+
             <img
+
                 ref={imgRef}
                 src={fighterImage}
                 alt="Fighter"
