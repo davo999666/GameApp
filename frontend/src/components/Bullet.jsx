@@ -23,11 +23,12 @@ const Bullet = ({ bullets, clouds, setBullets, setClouds}) => {
                 });
                 const collision = collisionBulClo(bullets, clouds);
                 if (collision) {
-                    console.log(collision)
                     const { bullet, cloud } = collision;
-                    setBullets(p => p.filter(b => b !== bullet)); // fix: b === bullet => b !== bullet
-                    dispatch(addGuessedWord(cloud.word));
-                    setClouds(prevClouds => prevClouds.filter(cloud0 => cloud0 !== cloud));
+                    if(clouds[0] === cloud){
+                        setBullets(p => p.filter(b => b !== bullet));
+                        dispatch(addGuessedWord(cloud.word));
+                        setClouds(prevClouds => prevClouds.filter(cloud0 => cloud0 !== cloud));
+                    }
                     if (!clouds[1]) {
                         dispatch(addGuessedWord(""));
                     }

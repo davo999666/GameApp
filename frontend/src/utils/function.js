@@ -29,8 +29,10 @@ export function rectCollision(rect1, rect2) {
     );
 }
 export function collisionBulClo(bullets, clouds) {
-    for (const cloud of clouds) {
-        for (const bullet of bullets) {
+    for (let ci = 0; ci < clouds.length; ci++) {
+        const cloud = clouds[ci];
+        for (let bi = 0; bi < bullets.length; bi++) {
+            const bullet = bullets[bi];
             const isColliding =
                 bullet.x >= cloud.x &&
                 bullet.x <= cloud.x + cloud.width &&
