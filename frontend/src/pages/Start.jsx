@@ -30,7 +30,7 @@ const Start = () => {
 
     return (
         <div className="h-screen w-screen flex items-center justify-center bg-gray-100">
-            <SignInForm/>
+            {/*<SignInForm/>*/}
             <div id="start-screen" className="md:w-[800px] lg:w-[900px] xl:w-[1000px] text-center space-y-4">
                 <div id="buttonLevel" className="space-x-2">
                     {levels.map((level) => (

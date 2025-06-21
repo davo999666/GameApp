@@ -9,9 +9,9 @@ const SignInForm = () => {
         console.log('Sign in data:', { emailOrUsername, password });
     };
 
-    function handlerSignIn() {
-
-    }
+//     function handlerSignIn() {
+// // TODO
+//     }
 
     return (
         <div className='fixed top-0 left-0 h-20 w-80 border border-red-500 bg-white p-4'>
